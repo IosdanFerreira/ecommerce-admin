@@ -24,10 +24,11 @@ import { Separator } from '@/components/ui/separator';
 // import ImageUpload from '@/components/ui/image-upload';
 import AlertModal from '@/components/modals/alert-modal';
 import Heading from '@/components/ui/heading';
+import ImageUpload from '@/components/ui/image-upload';
 
 const formSchema = z.object({
-  label: z.string().min(1),
-  imageUrl: z.string().min(1),
+  label: z.string().min(1, 'Este campo é obrigatório'),
+  imageUrl: z.string().min(1, 'Este campo é obrigatório'),
 });
 
 type BillboardFormValues = z.infer<typeof formSchema>
@@ -60,15 +61,16 @@ export default function BillboardForm({initialData}: BillboardFormProps) {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data);
+        await axios.patch(`/api/store/${params.storeId}/billboards/${params.billboardId}`, data);
       } else {
-        await axios.post(`/api/${params.storeId}/billboards`, data);
+        await axios.post(`/api/store/${params.storeId}/billboards`, data);
       }
-      router.refresh();
       router.push(`/${params.storeId}/billboards`);
+      router.refresh();
       toast.success(toastMessage);
     } catch (error: any) {
-      toast.error('Something went wrong.');
+      console.log(error);
+      toast.error('Algo deu errado');
     } finally {
       setLoading(false);
     }
@@ -77,12 +79,12 @@ export default function BillboardForm({initialData}: BillboardFormProps) {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
+      await axios.delete(`/api/store/${params.storeId}/billboards/${params.billboardId}`);
       router.refresh();
       router.push(`/${params.storeId}/billboards`);
-      toast.success('Billboard deleted.');
+      toast.success('Quadro deletado');
     } catch (error: any) {
-      toast.error('Make sure you removed all categories using this billboard first.');
+      toast.error('Tenha certeza de ter removido todas as categorias relacionadas ao quadro');
     } finally {
       setLoading(false);
       setOpen(false);
@@ -120,6 +122,12 @@ export default function BillboardForm({initialData}: BillboardFormProps) {
               <FormItem>
                 <FormLabel>Imagem de fundo</FormLabel>
                 <FormControl>
+                  <ImageUpload 
+                    value={field.value ? [field.value] : []} 
+                    disabled={loading} 
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange('')}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
