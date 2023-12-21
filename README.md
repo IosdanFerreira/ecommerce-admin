@@ -51,26 +51,23 @@ yarn install
 
 ### Setup .env
 
-Crie um arquivo .env na pasta raiz da sua cópia do projeto e cole essas configurações
-
 ```js
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_c2hhcmluZy1mb3hob3VuZC03Ni5jbGVyay5hY2NvdW50cy5kZXYk
-CLERK_SECRET_KEY=sk_test_sthW0Asgfv8XbSKhihm1B8RosCkio5VimklN4rM2VN
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
 DATABASE_URL=''
-
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="dh51hj9te"
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=""
+STRIPE_API_KEY=
 FRONTEND_STORE_URL=http://localhost:3001
+STRIPE_WEBHOOK_SECRET=
 
 ```
 
 ### Conexão com o PlanetScale e Prisma
-
-Rode esses comando no seu terminal para fazer a conexão do projeto com o banco de dados
 
 ```shell
 npx prisma generate
