@@ -61,8 +61,6 @@ NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
-DATABASE_URL='mysql://0qo5p1t22b30gjjxffr8:pscale_pw_cu9ofxs8rOTT4BncpuepZ3LijyjjDvERLnIbEuZ65CK@aws.connect.psdb.cloud/store-admin?sslaccept=strict'
-
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="dh51hj9te"
 FRONTEND_STORE_URL=http://localhost:3001
 
